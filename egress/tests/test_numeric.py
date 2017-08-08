@@ -50,7 +50,11 @@ class TestNumericTypes(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         create_table = """
-        CREATE TABLE bookings (best_price numeric(10,2))
+        CREATE TABLE bookings (
+            best_price numeric(10,2),
+            booking_types text[],
+            num_of_bookings_per_month integer[]
+        )
         """
         cls.execute_operation_on_db(create_table)
 
@@ -64,4 +68,18 @@ class TestNumericTypes(unittest.TestCase):
         INSERT INTO bookings (best_price) VALUES (1000.02)
         """
         result = self.execute_operation_on_db(insert_numeric)
+        self.assertEqual(result, 1)
+
+    def test_integer_array(self):
+        insert_array = """
+        INSERT INTO Bookings (num_of_bookings_per_month) VALUES (ARRAY[1, 2])
+        """
+        result = self.execute_operation_on_db(insert_array)
+        self.assertEqual(result, 1)
+
+    def test_text_array(self):
+        insert_array = """
+        INSERT INTO bookings (booking_types) VALUES (ARRAY['Air', 'Hotel'])
+        """
+        result = self.execute_operation_on_db(insert_array)
         self.assertEqual(result, 1)
