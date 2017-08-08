@@ -378,6 +378,7 @@ def parse_anyarray(value, vlen, ftype=None, fmod=None):
         offs += size
 
 
+@register_parser(1003)
 @register_parser(1007)
 def parse_array(value, vlen, ftype=None, fmod=None):
     if not vlen:
