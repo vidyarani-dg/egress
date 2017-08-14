@@ -1,7 +1,7 @@
 
-from .exceptions import *
+from .exceptions import *  # NOQA
 from .connection import Connection
-from .types import *
+from .types import *  # NOQA
 
 from . import wrap
 
@@ -32,3 +32,6 @@ apilevel = '2.0'  # NOQA
 threadsafety = 1
 
 paramstyle = 'numeric'
+
+
+Binary = bytes
